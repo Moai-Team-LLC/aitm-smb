@@ -1,0 +1,23 @@
+name: commitlint
+
+# Checks every commit of a pull request against Conventional Commits, using
+# .commitlintrc.json (header at most 72 characters). The repository has no
+# Node toolchain, so the self-contained wagoid action runs commitlint;
+# configFile is explicit because the action otherwise ignores the repo's
+# config. .githooks/commit-msg gives the same feedback locally.
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  commitlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: wagoid/commitlint-github-action@v6
+        with:
+          configFile: .commitlintrc.json

@@ -1,4 +1,4 @@
-_One topic per pull request. Semantic changes start with an issue ([CONTRIBUTING.md](../CONTRIBUTING.md)). This template is the standalone copy for after a split; while AITM-SMB lives inside the Agentic Product Standard repository, GitHub uses the host repository's template._
+_One topic per pull request. Semantic changes start with an issue ([CONTRIBUTING.md](../CONTRIBUTING.md))._
 
 ## What changed
 

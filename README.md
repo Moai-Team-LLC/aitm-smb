@@ -121,35 +121,31 @@ Reducing AI authority never needs a gate. "Material" is defined in [`STANDARD.md
 | [`tools/`](tools/) | [`tools/validate.py`](tools/validate.py) (integrity checks) and [`tools/build_dist.py`](tools/build_dist.py) (distributions); Python 3 standard library only |
 | [`decisions/`](decisions/) | Architecture Decision Records for the methodology |
 | [`releases/`](releases/), [`audits/`](audits/) | release records and historical audits |
-| [`.github/`](.github/) | standalone workflow and contribution templates; inert while hosted in the Agentic Product Standard repository |
+| [`.github/`](.github/), `.githooks/` | CI workflows, issue forms, pull-request template, code owners; local commit-message check |
 
 ## Using it with Claude Code
 
-The whole folder is one skill named `aitm-smb`; the root [`SKILL.md`](SKILL.md) routes to the numbered skills. Install the folder intact; single skills copied out of it lose their references.
+The whole repository is one skill named `aitm-smb`; the root [`SKILL.md`](SKILL.md) routes to the numbered skills. Install it intact; single skills copied out of it lose their references.
 
 ```bash
-git clone https://github.com/Moai-Team-LLC/agentic-product-standard.git
-mkdir -p ~/.claude/skills
-
 # pick one:
-# A. personal install, copied
-cp -R agentic-product-standard/aitm-smb ~/.claude/skills/aitm-smb
-# B. personal install, symlinked (follows git pull)
-ln -s "$PWD/agentic-product-standard/aitm-smb" ~/.claude/skills/aitm-smb
-# C. one project only
-mkdir -p <project>/.claude/skills
-cp -R agentic-product-standard/aitm-smb <project>/.claude/skills/aitm-smb
+# A. personal install (update it with git pull)
+git clone https://github.com/Moai-Team-LLC/aitm-smb.git ~/.claude/skills/aitm-smb
+# B. one project only
+git clone https://github.com/Moai-Team-LLC/aitm-smb.git <project>/.claude/skills/aitm-smb
 ```
+
+To pin a version, check out its release tag in that clone (`git checkout vX.Y.Z`), or unpack the Full distribution attached to the release and rename its folder to `aitm-smb`.
 
 Then ask, for example: *"Run an AITM-SMB Compact engagement for our order-intake process. Use ./engagement as the workspace."* The agent asks for an accountable Outcome owner, writes every instance into the workspace (never into the skill folder), and stops at each human gate for your decision.
 
 ## Using it with other agents
 
-Point the agent at [`AGENTS.md`](AGENTS.md) (for example from your project's own agent instructions) and have it load context as [`AGENT_CONTEXT_POLICY.md`](AGENT_CONTEXT_POLICY.md) defines. All paths are relative to this folder. Every skill ends with the `aitm_output` block defined in [`AGENT_OUTPUT_STANDARD.md`](AGENT_OUTPUT_STANDARD.md).
+Point the agent at [`AGENTS.md`](AGENTS.md) (for example from your project's own agent instructions) and have it load context as [`AGENT_CONTEXT_POLICY.md`](AGENT_CONTEXT_POLICY.md) defines. All paths are relative to the repository root. Every skill ends with the `aitm_output` block defined in [`AGENT_OUTPUT_STANDARD.md`](AGENT_OUTPUT_STANDARD.md).
 
 ## Validation and distributions
 
-Run from this folder:
+Run from the repository root:
 
 ```bash
 python3 tools/validate.py                                        # framework integrity
@@ -157,15 +153,15 @@ python3 tools/validate.py --engagement examples/compact-scenario-b   # trace int
 python3 tools/build_dist.py                                      # Core and Full zips in dist/
 ```
 
-Point `--engagement` at your own workspace to check its trace before claiming conformance. Each release attaches the Core and Full zips. The whole folder is the Full distribution; the Core distribution is defined in [`NORMATIVE_INDEX.md`](NORMATIVE_INDEX.md) §Distributions and has no `tools/`, so these commands need Full.
+Point `--engagement` at your own workspace to check its trace before claiming conformance. Each release attaches the Core and Full zips. The whole repository is the Full distribution; the Core distribution is defined in [`NORMATIVE_INDEX.md`](NORMATIVE_INDEX.md) §Distributions and has no `tools/`, so these commands need Full.
 
 ## Relation to the Agentic Product Standard
 
-AITM-SMB decides *whether and how much* AI a business change should use: the Intervention type, the authority level, the Authority Ceiling, and the pilot evidence. The [Agentic Product Standard](https://github.com/Moai-Team-LLC/agentic-product-standard) (APS), which hosts this folder, decides *how to build and license* the AI component. The ladders differ: AITM-SMB L0–L5 is a business authority ladder, while APS describes the AI component by an operating point, autonomy L0–L4 (who chooses the next step) × oversight O0–O2 (whether a human approves each consequential action). AITM authority corresponds to APS oversight; write `AITM-L3` or `APS-L3` when both appear. The informative [crosswalk](docs/crosswalk-agentic-product-standard.md) maps the ladders, the artifacts, and the hand-off. It adds no requirement to either standard.
+AITM-SMB decides *whether and how much* AI a business change should use: the Intervention type, the authority level, the Authority Ceiling, and the pilot evidence. The [Agentic Product Standard](https://github.com/Moai-Team-LLC/agentic-product-standard) (APS), a separate standard, decides *how to build and license* the AI component. The ladders differ: AITM-SMB L0–L5 is a business authority ladder, while APS describes the AI component by an operating point, autonomy L0–L4 (who chooses the next step) × oversight O0–O2 (whether a human approves each consequential action). AITM authority corresponds to APS oversight; write `AITM-L3` or `APS-L3` when both appear. The informative [crosswalk](docs/crosswalk-agentic-product-standard.md) maps the ladders, the artifacts, and the hand-off. It adds no requirement to either standard.
 
 ## Versioning and stability
 
-Semantic versioning ([`VERSIONING.md`](VERSIONING.md)). Within 1.x, the stable objects, identifiers, core trace, profiles, intervention families, autonomy levels, and agent statuses keep their meaning ([`PUBLIC_API.md`](PUBLIC_API.md) §9); an incompatible change requires 2.0. Releases are tagged `aitm-smb-vX.Y.Z` in the hosting repository.
+Semantic versioning ([`VERSIONING.md`](VERSIONING.md)). Within 1.x, the stable objects, identifiers, core trace, profiles, intervention families, autonomy levels, and agent statuses keep their meaning ([`PUBLIC_API.md`](PUBLIC_API.md) §9); an incompatible change requires 2.0. Releases are tagged `vX.Y.Z` ([`VERSIONING.md`](VERSIONING.md) §10).
 
 ## Contributing
 

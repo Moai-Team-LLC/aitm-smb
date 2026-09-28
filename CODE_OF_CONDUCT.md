@@ -37,7 +37,7 @@ This Code of Conduct applies within all community spaces of the project, and als
 
 ## Enforcement
 
-Report abusive, harassing, or otherwise unacceptable behavior to the project maintainers privately. While AITM-SMB is hosted in the Agentic Product Standard repository, the maintainers are those named in its [governance document](https://github.com/Moai-Team-LLC/agentic-product-standard/blob/main/GOVERNANCE.md). Do not report conduct problems in a public issue.
+Report abusive, harassing, or otherwise unacceptable behavior to the project maintainers privately. The maintainers are the code owners named in [`.github/CODEOWNERS`](.github/CODEOWNERS); reach them through their GitHub profiles. Do not report conduct problems in a public issue.
 
 All complaints will be reviewed and investigated promptly and fairly. Maintainers will respect the privacy and security of the reporter of any incident.
 

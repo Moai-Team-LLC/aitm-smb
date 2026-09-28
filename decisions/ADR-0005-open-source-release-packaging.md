@@ -10,7 +10,7 @@ Accepted
 
 ## Context
 
-AITM-SMB 1.0.0 was an internal release. Its full distribution was imported unchanged into the Agentic Product Standard repository as the folder aitm-smb, and 1.1.0 is its first public release. The imported folder was not ready to be published:
+AITM-SMB 1.0.0 was an internal release, shipped as an archive; 1.1.0 is its first public release. The 1.0.0 files, imported unchanged as the first commit of this repository, were not ready to be published:
 
 - it carried no license, although [`MANIFEST.md`](../MANIFEST.md) declared it an open methodology; a split of the folder would have been all rights reserved;
 - its integrity audits ([`audits/`](../audits/)) were produced by internal tooling that was never published, so nobody could rerun them;
@@ -21,7 +21,7 @@ AITM-SMB 1.0.0 was an internal release. Its full distribution was imported uncha
 
 ## Decision
 
-1. **License: MIT**, `Copyright (c) 2026 Alex Duchenchuk`, the same license and holder as the hosting repository. `LICENSE` sits in the AITM root; contributions are accepted under the same license ([`CONTRIBUTING.md`](../CONTRIBUTING.md)).
+1. **License: MIT**, `Copyright (c) 2026 Alex Duchenchuk`. `LICENSE` sits in the AITM root; contributions are accepted under the same license ([`CONTRIBUTING.md`](../CONTRIBUTING.md)).
 2. **Agent adapter.** A root [`SKILL.md`](../SKILL.md) makes the whole AITM root installable as one Agent Skill named `aitm-smb`. It routes to the numbered skills, which are procedures inside the folder and are not installed separately, because every reference in them is relative to the AITM root ([`AGENT_CONTEXT_POLICY.md`](../AGENT_CONTEXT_POLICY.md)).
 3. **Published tooling.** [`tools/validate.py`](../tools/validate.py) (framework integrity, and engagement trace integrity with `--engagement`) and [`tools/build_dist.py`](../tools/build_dist.py) (distributions) replace the unpublished internal audit tooling. Both use the Python standard library only; CI runs them on every change and before each release ([`MAINTENANCE.md`](../MAINTENANCE.md) §2).
 4. **Renamed paths** remove the deprecated framing. Skill numbers stay the stable identifiers ([`skills/INDEX.md`](../skills/INDEX.md) §5):
@@ -37,21 +37,20 @@ AITM-SMB 1.0.0 was an internal release. Its full distribution was imported uncha
    ```
 
 5. **Distributions.** Core is the Canonical Core plus the registries, `LICENSE`, and [`CHANGELOG.md`](../CHANGELOG.md); Full is the whole AITM root ([`NORMATIVE_INDEX.md`](../NORMATIVE_INDEX.md) §Distributions, [`MANIFEST.md`](../MANIFEST.md) `distributions`). [`tools/build_dist.py`](../tools/build_dist.py) builds both, and every GitHub release attaches them.
-6. **Hosting.** AITM-SMB lives in the Agentic Product Standard repository as a self-contained, split-ready folder: every path is relative to the AITM root and every command runs from inside it. Releases are tagged `aitm-smb-vX.Y.Z` there and `vX.Y.Z` after a split ([`VERSIONING.md`](../VERSIONING.md) §10). The folder's own `.github/` (workflow, issue forms, pull-request template) is inert until a split; the procedure is [`MAINTENANCE.md`](../MAINTENANCE.md) §6. The host-side decision is recorded in the hosting repository's ADR-0003, "Host AITM-SMB as a split-ready subfolder".
+6. **Hosting.** AITM-SMB has its own repository, with its own CI, issue forms, pull-request template, and release tags `vX.Y.Z` ([`VERSIONING.md`](../VERSIONING.md) §10). Every path is relative to the AITM root and every command runs from it, so the files also work when installed as one skill or vendored into another repository ([`MAINTENANCE.md`](../MAINTENANCE.md) §6).
 7. **Community files** in the AITM root: [`README.md`](../README.md), [`QUICKSTART.md`](../QUICKSTART.md), [`CONTRIBUTING.md`](../CONTRIBUTING.md), [`CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md), [`SECURITY.md`](../SECURITY.md), [`CITATION.cff`](../CITATION.cff), issue and pull-request templates, and an ADR index with a template ([`decisions/README.md`](README.md), [`decisions/ADR-0000-template.md`](ADR-0000-template.md)).
 8. **Version 1.1.0** is a MINOR release: compatible additions and clarifications, with field renames listed in the migration table of [`releases/1.1.0.md`](../releases/1.1.0.md) ([`VERSIONING.md`](../VERSIONING.md) §9). No [`PUBLIC_API.md`](../PUBLIC_API.md) meaning changes.
 
 ## Consequences
 
-- The methodology can be reused, forked, and cited, and it stays licensed after a split without relicensing.
+- The methodology can be reused, forked, vendored, and cited under one license.
 - Anyone can rerun the integrity checks that the 1.0.0 audits reported, and check their own engagement's trace.
 - Links to the old paths break. There were no public consumers before 1.1.0; the [`CHANGELOG.md`](../CHANGELOG.md) entry for 1.1.0 lists old and new paths.
-- Two CI definitions must be kept in step while co-hosted: the host workflow and the folder's standalone copy.
 - [`tools/validate.py`](../tools/validate.py) enforces version alignment across [`MANIFEST.md`](../MANIFEST.md), version headers, contracts, [`CITATION.cff`](../CITATION.cff), [`README.md`](../README.md), and [`CHANGELOG.md`](../CHANGELOG.md) ([`VERSIONING.md`](../VERSIONING.md) §8), so a release cannot ship with mismatched versions.
 
 ## Alternatives
 
-- **CC BY 4.0.** Considered, because most of the content is documentation. Not chosen: the release also contains executable scripts and agent skills that work as instructions, for which a software license is the usual fit; MIT matches the hosting repository, so the whole repository stays under one license, and a split needs no relicensing. MIT allows the same reuse of the documentation as CC BY 4.0, on the condition that the copyright and permission notice is kept.
-- **A separate repository from the start.** Deferred: it adds a second release and governance surface before any external contributor exists. The split-ready layout keeps the option open (hosting repository ADR-0003).
+- **CC BY 4.0.** Considered, because most of the content is documentation. Not chosen: the release also contains executable scripts and agent skills that work as instructions, for which a software license is the usual fit, and one license then covers the whole repository. MIT allows the same reuse of the documentation as CC BY 4.0, on the condition that the copyright and permission notice is kept.
+- **Hosting inside the Agentic Product Standard repository.** Considered, and briefly implemented while 1.1.0 was prepared. Not chosen: AITM-SMB has its own semantic version, release cycle, and audience, and the two standards use different ladders (business authority here; an operating point of autonomy and oversight there). One repository blurred their versions, releases, and vocabulary. The informative [crosswalk](../docs/crosswalk-agentic-product-standard.md) relates them instead.
 - **Keep the 1.0.0 paths.** Rejected: they kept alive the AI-first framing the method rejects (INV-05) and that 0.7.0 had already deprecated in artifacts. Directory slugs are not stable identifiers; skill numbers are.
 - **Install each numbered skill separately.** Rejected: the skills depend on the whole AITM root, and copied skills would lose their references.

@@ -350,7 +350,7 @@ def check_references(files, rep):
                 continue
             clean = target.split("#", 1)[0]
             if clean and not os.path.exists(os.path.normpath(os.path.join(file_dir, clean))):
-                # Always an error: GitHub renders the link, and the host CI link check fails on it.
+                # Always an error: GitHub renders the link, so every reader meets it.
                 rep.error(relpath, "broken link (%s)" % target)
 
 

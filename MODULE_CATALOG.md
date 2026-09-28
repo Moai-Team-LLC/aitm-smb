@@ -239,4 +239,4 @@ Not modules. Tiers: [`NORMATIVE_INDEX.md`](NORMATIVE_INDEX.md).
 | [`audits/`](audits/) | historical audit reports | informative; project record |
 | [`decisions/`](decisions/) | maintainer ADRs ([`decisions/README.md`](decisions/README.md)) | framework governance |
 | [`VERSIONING.md`](VERSIONING.md), [`EXTENSION_MODEL.md`](EXTENSION_MODEL.md), [`MAINTENANCE.md`](MAINTENANCE.md), [`CONTRIBUTING.md`](CONTRIBUTING.md), [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md), [`SECURITY.md`](SECURITY.md), [`CHANGELOG.md`](CHANGELOG.md), [`REPO_STRUCTURE.md`](REPO_STRUCTURE.md) (generated file tree, checked by [`tools/validate.py`](tools/validate.py)), `LICENSE`, [`CITATION.cff`](CITATION.cff) | framework governance and project files | not engagement rules |
-| `.github/` | standalone CI for after a split ([`MAINTENANCE.md`](MAINTENANCE.md) §6) | project file |
+| `.github/`, `.githooks/` | CI workflows, issue forms, pull-request template, code owners; local commit-message check ([`CONTRIBUTING.md`](CONTRIBUTING.md)) | project file |

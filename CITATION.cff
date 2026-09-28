@@ -8,8 +8,8 @@ authors:
 version: 1.1.0
 date-released: 2026-09-28
 license: MIT
-repository-code: "https://github.com/Moai-Team-LLC/agentic-product-standard"
-url: "https://github.com/Moai-Team-LLC/agentic-product-standard/tree/main/aitm-smb"
+repository-code: "https://github.com/Moai-Team-LLC/aitm-smb"
+url: "https://github.com/Moai-Team-LLC/aitm-smb"
 abstract: >-
   AITM-SMB is an open, domain-neutral, agent-readable methodology for the AI
   transformation of small and medium-sized businesses. Its unit of

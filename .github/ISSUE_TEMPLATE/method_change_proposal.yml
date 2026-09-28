@@ -1,7 +1,3 @@
-# Standalone copy for after a split (git subtree split --prefix=aitm-smb).
-# Inert while AITM-SMB lives inside the Agentic Product Standard repository:
-# GitHub reads issue forms only from the host's .github/ISSUE_TEMPLATE/.
-
 name: "Method change proposal"
 description: Propose a change to what AITM-SMB requires, defines, or produces.
 labels: ["proposal"]

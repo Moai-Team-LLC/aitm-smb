@@ -150,12 +150,7 @@ A MINOR release MAY rename a field only to align it with its canonical record co
 
 ## 10. Release tags
 
-```text
-inside the host repository   aitm-smb-vX.Y.Z
-standalone (after a split)   vX.Y.Z
-```
-
-The tag MUST match [`MANIFEST.md`](MANIFEST.md). Pushing it publishes a GitHub release whose notes are the matching CHANGELOG.md section and which attaches the Core and Full distributions ([`tools/build_dist.py`](tools/build_dist.py), [`NORMATIVE_INDEX.md`](NORMATIVE_INDEX.md) §Distributions). Release procedure: [`MAINTENANCE.md`](MAINTENANCE.md) §2.
+Releases are tagged `vX.Y.Z`. The tag MUST match [`MANIFEST.md`](MANIFEST.md). Pushing it publishes a GitHub release whose notes are the matching CHANGELOG.md section and which attaches the Core and Full distributions ([`tools/build_dist.py`](tools/build_dist.py), [`NORMATIVE_INDEX.md`](NORMATIVE_INDEX.md) §Distributions). Release procedure: [`MAINTENANCE.md`](MAINTENANCE.md) §2.
 
 ---
 

@@ -1,9 +1,8 @@
 name: validate
 
-# Standalone copy for after a split (git subtree split --prefix=aitm-smb).
-# While AITM-SMB lives inside the Agentic Product Standard repository this
-# file is inert; the active workflow is .github/workflows/aitm-smb.yml at the
-# host root. Keep the two in step. Standalone release tags are vX.Y.Z.
+# CI and releases for AITM-SMB. Release: push a tag vX.Y.Z matching
+# MANIFEST.md (VERSIONING.md §10). The release notes are the matching
+# CHANGELOG.md section; the Core and Full distributions are attached.
 #
 # The distributions are built once, in the validate job; the Full one is
 # unpacked and validated on its own before the release job publishes that

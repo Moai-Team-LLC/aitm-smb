@@ -1,7 +1,3 @@
-# Standalone copy for after a split (git subtree split --prefix=aitm-smb).
-# Inert while AITM-SMB lives inside the Agentic Product Standard repository:
-# GitHub reads issue forms only from the host's .github/ISSUE_TEMPLATE/.
-
 name: "Method correction"
 description: Report something in AITM-SMB that is wrong, contradictory, unclear, or broken.
 labels: ["correction"]

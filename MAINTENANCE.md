@@ -86,20 +86,6 @@ scenario walk-through          changed methodology still works for every scenari
 
 ---
 
-## 6. Splitting AITM-SMB into its own repository
+## 6. Self-contained layout
 
-AITM-SMB is split-ready: every path is relative to the AITM root, and every command runs from inside it.
-
-```text
-1. from the host root:  git subtree split --prefix=aitm-smb -b aitm-smb-standalone
-2. push that branch as main of the new repository
-3. .github/ in the AITM root becomes the repository's .github/: workflows/validate.yml
-   (replaces the host's aitm-smb workflow), ISSUE_TEMPLATE/ (config.yml,
-   method_correction.yml, method_change_proposal.yml) and PULL_REQUEST_TEMPLATE.md
-4. copy only CODEOWNERS and the commit-message lint from the host .github/ and adapt them
-5. tag releases vX.Y.Z from then on (VERSIONING.md §10); host tags are not carried over
-6. update host-repository URLs and references in README.md, CITATION.cff, SECURITY.md,
-   CODE_OF_CONDUCT.md, CONTRIBUTING.md and .github/ISSUE_TEMPLATE/config.yml
-```
-
-While co-hosted, keep the AITM root's `.github/workflows/validate.yml` in step with the host workflow.
+Every path is relative to the repository root, and every command runs from it. AITM-SMB can therefore be installed as one skill, vendored into another repository as a subfolder, or unpacked from the Full distribution, and [`tools/validate.py`](tools/validate.py) and [`tools/build_dist.py`](tools/build_dist.py) work unchanged in each place. Keep it that way: no link or command may reach outside the root.
